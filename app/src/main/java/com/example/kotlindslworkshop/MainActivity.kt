@@ -25,5 +25,13 @@ class SqlBuilder {
         this.columns.addAll(columns)
     }
 
-    fun build() = "select * from my_table"
+    fun build() : String {
+        val columnsToFetch =
+            if (columns.isEmpty()) {
+                "*"
+            } else {
+                columns.joinToString(", ")
+            }
+        return "select $columnsToFetch from my_table"
+    }
 }
