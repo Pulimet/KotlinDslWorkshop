@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         tvResult.text = query {
             select("col1", "col2")
+            from("my_table")
         }.build()
     }
 }
@@ -20,9 +21,14 @@ fun query(initializer: SqlBuilder.() -> Unit) = SqlBuilder().apply(initializer)
 
 class SqlBuilder {
     private val columns = mutableListOf<String>()
+    private lateinit var table: String
 
     fun select(vararg columns: String) {
         this.columns.addAll(columns)
+    }
+
+    fun from(table: String) {
+        this.table = table
     }
 
     fun build() : String {
@@ -32,6 +38,6 @@ class SqlBuilder {
             } else {
                 columns.joinToString(", ")
             }
-        return "select $columnsToFetch from my_table"
+        return "select $columnsToFetch from $table"
     }
 }
