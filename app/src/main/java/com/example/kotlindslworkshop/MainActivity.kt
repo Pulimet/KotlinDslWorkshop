@@ -15,13 +15,15 @@ class MainActivity : AppCompatActivity() {
 
         tvResult.text = query {
             Log.d(tag, "Lambda called")
+            printLog()
         }.build()
     }
 }
 
-fun query(init: () -> Unit) : SqlBuilder {
-    init()
-    return SqlBuilder()
+fun query(init: SqlBuilder.() -> Unit) : SqlBuilder {
+    val sqlBuilder = SqlBuilder()
+    sqlBuilder.init()
+    return sqlBuilder
 }
 
 class SqlBuilder {
