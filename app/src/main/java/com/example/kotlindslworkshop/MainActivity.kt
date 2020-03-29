@@ -20,11 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-fun query(init: SqlBuilder.() -> Unit) : SqlBuilder {
-    val sqlBuilder = SqlBuilder()
-    sqlBuilder.init()
-    return sqlBuilder
-}
+fun query(initializer: SqlBuilder.() -> Unit) = SqlBuilder().apply(initializer)
 
 class SqlBuilder {
 
