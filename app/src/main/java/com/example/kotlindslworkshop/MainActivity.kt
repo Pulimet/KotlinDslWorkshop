@@ -5,9 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+private val tag = "WORKSHOP_TAG"
 
-    private val tag = "WORKSHOP_TAG"
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,5 +25,10 @@ fun query(init: () -> Unit) : SqlBuilder {
 }
 
 class SqlBuilder {
+
+    fun printLog() {
+        Log.d(tag, "printLog function called")
+    }
+
     fun build() = "select * from my_table"
 }
