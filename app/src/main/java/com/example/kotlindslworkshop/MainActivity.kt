@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tvResult.text = query {
-
+            select("col1", "col2")
         }.build()
     }
 }
@@ -19,5 +19,11 @@ class MainActivity : AppCompatActivity() {
 fun query(initializer: SqlBuilder.() -> Unit) = SqlBuilder().apply(initializer)
 
 class SqlBuilder {
+    private val columns = mutableListOf<String>()
+
+    fun select(vararg columns: String) {
+        this.columns.addAll(columns)
+    }
+
     fun build() = "select * from my_table"
 }
