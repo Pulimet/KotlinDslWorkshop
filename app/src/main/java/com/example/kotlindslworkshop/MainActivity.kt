@@ -10,11 +10,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sqlString = SqlBuilder().build()
-        tvResult.text = sqlString
+        tvResult.text = query().build()
     }
+}
+
+fun query() : SqlBuilder {
+    return SqlBuilder()
 }
 
 class SqlBuilder {
     fun build() = "select * from my_table"
 }
+
