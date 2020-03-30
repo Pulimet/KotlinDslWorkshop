@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
             from("my_table")
             where {
                 "col1" eq 4
+                or {
+                    "col2" eq 1
+                    "col2" eq 9
+                }
             }
         }.build()
     }
